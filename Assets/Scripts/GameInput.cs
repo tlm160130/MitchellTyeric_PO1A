@@ -18,5 +18,10 @@ public class GameInput : MonoBehaviour
                 SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(activeSceneIndex);
         }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Application.Quit();
+        }
     }
 }

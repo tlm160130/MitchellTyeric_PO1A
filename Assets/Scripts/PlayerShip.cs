@@ -30,12 +30,12 @@ public class PlayerShip : MonoBehaviour
         //This will turn the Thrusters on or off when the player presses the spacebar
         void ThrustersOn()
         {
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetButtonDown("Fire1"))
             {
                 _ps.Play();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonUp("Fire2"))
             {
                 _ps.Stop();
             }
