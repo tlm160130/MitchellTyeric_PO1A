@@ -12,10 +12,13 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] float _turnSpeed = 3f;
 
     Rigidbody _rb = null;
+    ParticleSystem _ps;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _ps = GetComponent<ParticleSystem>();
+
     }
 
     private void FixedUpdate()
