@@ -25,6 +25,21 @@ public class PlayerShip : MonoBehaviour
     {
         MoveShip();
         TurnShip();
+        ThrustersOn();
+
+        //This will turn the Thrusters on or off when the player presses the spacebar
+        void ThrustersOn()
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                _ps.Play();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _ps.Stop();
+            }
+        }
     }
 
     //Use forces to build momentum forward/backward
@@ -36,14 +51,6 @@ public class PlayerShip : MonoBehaviour
         Vector3 moveDirection = transform.forward * moveAmountThisFrame;
         // apply the movement to the physics object
         _rb.AddForce(moveDirection);
-
-        if (_moveSpeed != null)
-        {
-            _ps.Play();
-        } else
-        {
-            _ps.Stop();
-        }
     }
 
     // don't use forces for this. We want rotations to be precise
@@ -55,14 +62,6 @@ public class PlayerShip : MonoBehaviour
         Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
         // spin the rigidbody
         _rb.MoveRotation(_rb.rotation * turnOffset);
-
-        if (_turnSpeed != null)
-        {
-            _ps.Play();
-        } else
-        {
-            _ps.Stop();
-        }
     }
 
     public void Kill()
