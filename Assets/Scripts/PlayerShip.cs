@@ -12,6 +12,9 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] float _moveSpeed = 12f;
     [SerializeField] float _turnSpeed = 3f;
 
+    [Header("Feedback")]
+    [SerializeField] TrailRenderer _trail = null;
+
     Rigidbody _rb = null;
     ParticleSystem _ps;
 
@@ -19,6 +22,7 @@ public class PlayerShip : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _ps = GetComponentInChildren<ParticleSystem>();
+        _trail.enabled = false;
     }
 
     private void FixedUpdate()
@@ -67,5 +71,16 @@ public class PlayerShip : MonoBehaviour
     public void Kill()
     {
         this.gameObject.SetActive(false);
+    }
+
+    public void SetSpeed(float SpeedChange)
+    {
+        _moveSpeed += SpeedChange;
+        //TODO audio/visuals
+    }
+
+    public void SetBoosters(bool activeState)
+    {
+        _trail.enabled = activeState;
     }
 }
