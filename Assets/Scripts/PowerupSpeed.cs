@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Media;
 using UnityEngine;
 
 public class PowerupSpeed : MonoBehaviour
@@ -9,6 +10,8 @@ public class PowerupSpeed : MonoBehaviour
     [SerializeField] float _speedIncreaseAmount = 20;
     [SerializeField] float _powerupDuration = 5;
     [SerializeField] AudioClip _PSound = null;
+    [SerializeField] AudioClip _RSound = null;
+    [SerializeField] ParticleSystem _ImpactP = null;
 
     [Header("Setup")]
     [SerializeField] GameObject _visualsToDeactivate = null;
@@ -35,6 +38,9 @@ public class PowerupSpeed : MonoBehaviour
 
             //play audio
             AudioHelper.PlayClip2D(_PSound, 1);
+
+            //use visuals
+            Collect();
         }
     }
 
@@ -54,6 +60,7 @@ public class PowerupSpeed : MonoBehaviour
         //reset
         DeactivatePowerup(playerShip);
         EnableObject();
+        AudioHelper.PlayClip2D(_RSound, 1);
 
         //set boolean to release lockout
         _poweredUp = false;
@@ -94,6 +101,12 @@ public class PowerupSpeed : MonoBehaviour
         //enable visuals again to draw attention
         _visualsToDeactivate.SetActive(true);
         //TODO reactivate particle flash/audio
+    }
+
+    public void Collect()
+    {
+        //play the collect graphics
+        _ImpactP.Play();
     }
 
     void Update()
