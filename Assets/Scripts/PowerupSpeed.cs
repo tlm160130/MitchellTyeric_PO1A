@@ -8,6 +8,7 @@ public class PowerupSpeed : MonoBehaviour
     [Header("Powerup Settings")]
     [SerializeField] float _speedIncreaseAmount = 20;
     [SerializeField] float _powerupDuration = 5;
+    [SerializeField] AudioClip _PSound = null;
 
     [Header("Setup")]
     [SerializeField] GameObject _visualsToDeactivate = null;
@@ -30,7 +31,10 @@ public class PowerupSpeed : MonoBehaviour
         if (playerShip != null && _poweredUp == false)
         {
             //start power up timer; Restart if it's already started
-            StartCoroutine(PowerupSequence(playerShip)); 
+            StartCoroutine(PowerupSequence(playerShip));
+
+            //play audio
+            AudioHelper.PlayClip2D(_PSound, 1);
         }
     }
 

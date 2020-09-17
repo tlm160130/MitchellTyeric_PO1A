@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9021518766897129138}
   - component: {fileID: 9021518766897129141}
   - component: {fileID: 9021518766897129140}
+  - component: {fileID: -2688810895777642707}
   m_Layer: 0
   m_Name: Powerup_Speed
   m_TagString: Untagged
@@ -60,7 +61,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedIncreaseAmount: 20
   _powerupDuration: 5
+  _PSound: {fileID: 0}
   _visualsToDeactivate: {fileID: 9021518767966898283}
+--- !u!114 &-2688810895777642707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021518766897129143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8586076949e24a478e12a275f56bc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9021518767576221193
 GameObject:
   m_ObjectHideFlags: 0
