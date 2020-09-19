@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HazardVolume : MonoBehaviour
 {
-   private void OnTriggerEnter(Collider other)
+    public int Respawn;
+    
+    private void OnTriggerEnter(Collider other)
     {
         //Detect if it's the player
         PlayerShip playerShip
@@ -13,7 +16,7 @@ public class HazardVolume : MonoBehaviour
         if (playerShip != null)
         {
             // do something!
-            playerShip.Kill();
+            SceneManager.LoadScene(Respawn);
         }
     }
 }
