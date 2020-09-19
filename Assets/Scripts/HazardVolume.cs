@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class HazardVolume : MonoBehaviour
 {
     public int Respawn;
-    
+
     private void OnTriggerEnter(Collider other)
     {
         //Detect if it's the player
@@ -16,7 +16,13 @@ public class HazardVolume : MonoBehaviour
         if (playerShip != null)
         {
             // do something!
-            SceneManager.LoadScene(Respawn);
+            playerShip.Kill();
+            DelayHelper.DelayAction(this, RespawnPlayer, 2f);
         }
+    }
+
+    void RespawnPlayer()
+    {
+        SceneManager.LoadScene(Respawn);
     }
 }
