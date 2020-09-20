@@ -24,5 +24,7 @@ public class GameInput : MonoBehaviour
         {
             Application.Quit();
         }
+
+
     }
 }

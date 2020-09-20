@@ -5,6 +5,8 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShip : MonoBehaviour
@@ -14,15 +16,26 @@ public class PlayerShip : MonoBehaviour
 
     [Header("Feedback")]
     [SerializeField] TrailRenderer _trail = null;
+    [SerializeField] AudioClip _PSound = null;
+    [SerializeField] AudioClip _WSound = null;
+
+    public TextMeshProUGUI scoreText;
+    public GameObject winText;
+
+    private int count;
 
     Rigidbody _rb = null;
     ParticleSystem _ps;
-
+  
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _ps = GetComponentInChildren<ParticleSystem>();
         _trail.enabled = false;
+
+        count = 0;
+        displayScoreText();
+        winText.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -43,6 +56,33 @@ public class PlayerShip : MonoBehaviour
             {
                 _ps.Stop();
             }
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Collect"))
+        {
+            other.gameObject.SetActive(false);
+            //here is where we add one to score
+            count = count + 1;
+            //run the display function again to show updated score counts
+            displayScoreText();
+            AudioHelper.PlayClip2D(_PSound, 1);
+        }
+
+    }
+
+    void displayScoreText()
+    {
+        scoreText.text = "Score: " + count.ToString(); //count is an integer; it can become a String (literal text)
+
+        if (count >= 5)
+        {
+            winText.SetActive(true);
+            AudioHelper.PlayClip2D(_WSound, 3);
         }
     }
 
@@ -76,7 +116,6 @@ public class PlayerShip : MonoBehaviour
     public void SetSpeed(float SpeedChange)
     {
         _moveSpeed += SpeedChange;
-        //TODO audio/visuals
     }
 
     public void SetBoosters(bool activeState)

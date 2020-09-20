@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class HazardVolume : MonoBehaviour
 {
     public int Respawn;
+    [SerializeField] AudioClip _DSound = null;
+    public GameObject loseText;
+
+    void Awake()
+    {
+        loseText.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +24,8 @@ public class HazardVolume : MonoBehaviour
         {
             // do something!
             playerShip.Kill();
+            AudioHelper.PlayClip2D(_DSound, 1);
+            loseText.SetActive(true);
             DelayHelper.DelayAction(this, RespawnPlayer, 2f);
         }
     }
