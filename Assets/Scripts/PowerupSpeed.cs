@@ -1,7 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Media;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Security.Cryptography;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class PowerupSpeed : MonoBehaviour
 {

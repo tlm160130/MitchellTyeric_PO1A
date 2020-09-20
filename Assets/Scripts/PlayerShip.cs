@@ -7,10 +7,13 @@ using System.Security.Cryptography;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShip : MonoBehaviour
 {
+    public int Respawn;
+
     [SerializeField] float _moveSpeed = 12f;
     [SerializeField] float _turnSpeed = 3f;
 
@@ -83,7 +86,13 @@ public class PlayerShip : MonoBehaviour
         {
             winText.SetActive(true);
             AudioHelper.PlayClip2D(_WSound, 3);
+            DelayHelper.DelayAction(this, RespawnPlayer, 2f);
         }
+    }
+
+    void RespawnPlayer()
+    {
+        SceneManager.LoadScene(Respawn);
     }
 
     //Use forces to build momentum forward/backward
